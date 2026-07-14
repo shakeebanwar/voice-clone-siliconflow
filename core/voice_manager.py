@@ -30,7 +30,7 @@ class SiliconFlowVoiceManager:
             print(f"❌ Failed to list voices: {response.text}")
             return None
 
-    def generate_speech(self, model: str, input_text: str, voice_uri: str, output_path: str) -> bool:
+    def generate_speech(self, model: str, input_text: str, voice_uri: str, output_path: str, speed: float = 1.0) -> bool:
         """
         Generates speech using a preset URI and streams the response to a local file.
         """
@@ -42,7 +42,7 @@ class SiliconFlowVoiceManager:
             "response_format": "mp3",
             "sample_rate": 32000,
             "stream": True,
-            "speed": 1.0,
+            "speed": speed,
             "gain": 0.0
         }
 

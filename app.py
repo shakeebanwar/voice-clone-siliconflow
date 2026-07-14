@@ -94,6 +94,14 @@ with col1:
     selected_voice_label = st.selectbox("Select Voice Model", options=list(voice_options.keys()))
     selected_uri = voice_options[selected_voice_label]
     
+    playback_speed = st.slider(
+        "Playback Speed (1.0x to 2.0x)", 
+        min_value=1.0, 
+        max_value=2.0, 
+        value=1.0, 
+        step=0.1
+    )
+    
     st.info("Voices are dynamically fetched from your SiliconFlow account.")
 
 with col2:
@@ -118,7 +126,8 @@ if st.button("🚀 Generate Audio", type="primary", use_container_width=True):
                 model=model_name,
                 input_text=input_text,
                 voice_uri=selected_uri,
-                output_path=output_filename
+                output_path=output_filename,
+                speed=playback_speed
             )
         
         if success:
